@@ -6,7 +6,7 @@ Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.o
 Create an HTML file containing your presentation slides where each slide is separated by a blank line:
 ```html
 <meta charset="utf-8">
-<script src="https://unpkg.com/sentjs">
+<script src="sent.js">
 @http://www.nyan.cat/cats/original.gif
 this text will not be displayed, since the @ at the start of the first line
 makes this paragraph an image slide.
