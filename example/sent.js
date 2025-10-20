@@ -113,6 +113,10 @@
 			'Tahoma',
 			'Trebuchet MS',
 
+			'Fira Code',
+			'JetBrains Mono',
+			'IBM Plex Mono',
+			'Iosevka',
 			'monospace',
 			'Courier New',
 
