@@ -103,7 +103,23 @@
 
 		fontSelect = createElement('select');
 		fontSelect.id = 'fontSelect';
-		var fonts = ['Times New Roman', 'Arial', 'monospace', 'Courier New', 'Georgia', 'Verdana', 'Comic Sans MS', 'Impact', 'Trebuchet MS'];
+		var fonts = [
+			'Times New Roman',
+			'Georgia',
+			'Garamond',
+
+			'Arial',
+			'Verdana',
+			'Tahoma',
+			'Trebuchet MS',
+
+			'monospace',
+			'Courier New',
+
+			'Impact',
+			'Comic Sans MS',
+			'Brush Script MT'
+		];
 		fonts.forEach(function (font) {
 			var option = createElement('option');
 			option.value = font;
