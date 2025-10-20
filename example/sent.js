@@ -105,24 +105,12 @@
 		fontSelect.id = 'fontSelect';
 		var fonts = [
 			'Times New Roman',
-			'Georgia',
-			'Garamond',
-
 			'Arial',
-			'Verdana',
-			'Tahoma',
-			'Trebuchet MS',
-
-			'Fira Code',
 			'JetBrains Mono',
-			'IBM Plex Mono',
 			'Iosevka',
 			'monospace',
 			'Courier New',
 
-			'Impact',
-			'Comic Sans MS',
-			'Brush Script MT'
 		];
 		fonts.forEach(function (font) {
 			var option = createElement('option');
