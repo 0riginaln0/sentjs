@@ -26,7 +26,7 @@
 	var fontSelect;
 
 	window.requestAnimationFrame(setup);
-	
+
 	function setup(t) {
 		if (document.body == null) {
 			window.requestAnimationFrame(setup);
@@ -38,7 +38,7 @@
 		configureSlides();
 		configureEvents();
 	};
-	
+
 	function css() {
 		var style = createElement("style");
 		document.head.appendChild(style);
@@ -130,9 +130,9 @@
 
 	function configureEditor() {
 		var resizingEditor = false;
-		
+
 		editor.onmousedown = function (e) { resizingEditor = true; };
-		
+
 		window.onmousemove = throttle(function (e) {
 			if (!resizingEditor) return;
 			resize(slideView);
@@ -189,7 +189,7 @@
 		};
 
 		window.onresize = throttle(function (e) { show(slides[curSlideIdx]); });
-		
+
 		fontSelect.onchange = applyFont;
 	}
 
@@ -198,18 +198,18 @@
 		slideLines = [];
 		if (!data.endsWith("\n"))
 			data += "\n";
-		
+
 		var lines = data.split("\n"), curSlide, hasImage;
 		var lastInsertedSlide = -1;
-		
+
 		function reset() {
 			curSlide = preamble;
 			hasImage = false;
 			lastInsertedSlide++;
 		}
-		
+
 		function fix(d) { return d.replace(/\\(.)/g, "$1"); }
-		
+
 		function checkLineNum(cur) {
 			if (lineNum == undefined) return;
 			if (cur == lineNum) {
@@ -269,7 +269,7 @@
 		var body = document.body;
 		while (cur > minFontVw) {
 			if (!isOverflown(el) && body.scrollHeight <= body.clientHeight && body.scrollWidth <= body.clientWidth) break;
-			
+
 			cur -= fontDecreaseStep;
 			el.style.fontSize = cur + "vw";
 		}
@@ -322,7 +322,7 @@
 			if (filename) {
 				var textToWrite = "<meta charset='utf-8'>\r\n<script src='http://unpkg.com/sentjs'>\r\n" + editor.value.replace(/\n/g, '\r\n') + "</script>";
 				var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-				
+
 				if ('msSaveOrOpenBlob' in navigator) {
 					navigator.msSaveOrOpenBlob(textFileAsBlob, filename);
 				} else {
@@ -343,8 +343,8 @@
 		} else {
 			alert('Your browser does not support the HTML5 Blob.');
 		}
-	}
-	;
+	};
+
 	function destroyClickedElement(event) {
 		document.body.removeChild(event.target);
 	}
@@ -450,7 +450,7 @@
 
 		return debounced;
 	};
-	
+
 	function restArgs(func, startIndex) {
 		startIndex = startIndex == null ? func.length - 1 : +startIndex;
 		return function () {

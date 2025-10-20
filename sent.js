@@ -23,6 +23,7 @@
 	var minFontVw = 0.5;
 	var fontDecreaseStep = 0.25;
 	var createElement = function (t) { return document.createElement(t); };
+	var fontSelect;
 
 	window.requestAnimationFrame(setup);
 
@@ -52,8 +53,9 @@
 			"#slideView{display:flex;align-items:center;justify-content:center;width:100%;}",
 			".slide{white-space:pre;padding:1vw;line-height:100%;}",
 			".fill{overflow:hidden;background-repeat:no-repeat;background-size:contain;background-position:center;background-origin:content-box;height:100%;width:100%;}",
-			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;}",
-			"#file{display:none}"
+			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;font-family: monospace;}",
+			"#file{display:none}",
+			"#fontSelect { margin-left: 10px; }"
 		].map(function (e, i) { style.sheet.insertRule(e, i); });
 	}
 
@@ -99,6 +101,20 @@
 		newBtn.onclick = newFile;
 		footerView.appendChild(newBtn);
 
+		fontSelect = createElement('select');
+		fontSelect.id = 'fontSelect';
+		var fonts = ['Times New Roman', 'Arial', 'monospace', 'Courier New', 'Georgia', 'Verdana', 'Comic Sans MS', 'Impact', 'Trebuchet MS'];
+		fonts.forEach(function (font) {
+			var option = createElement('option');
+			option.value = font;
+			option.textContent = font;
+			if (font === 'Times New Roman') {
+				option.selected = true;
+			}
+			fontSelect.appendChild(option);
+		});
+		footerView.appendChild(fontSelect);
+
 		mainView = createElement('div');
 		mainView.id = 'main';
 
@@ -139,6 +155,8 @@
 
 		editor.value = data;
 		show(slides[curSlideIdx]);
+		fontSelect = document.getElementById('fontSelect');
+		applyFont();
 	}
 
 	function configureEvents() {
@@ -171,6 +189,8 @@
 		};
 
 		window.onresize = throttle(function (e) { show(slides[curSlideIdx]); });
+
+		fontSelect.onchange = applyFont;
 	}
 
 	function create(data, lineNum) {
@@ -317,7 +337,6 @@
 						downloadLink.style.display = 'none';
 						document.body.appendChild(downloadLink);
 					}
-
 					downloadLink.click();
 				}
 			}
@@ -460,5 +479,10 @@
 			return func.apply(null, args);
 		}, wait);
 	});
+
+	function applyFont() {
+		var selectedFont = fontSelect.value;
+		slideView.style.fontFamily = selectedFont;
+	}
 
 })();
