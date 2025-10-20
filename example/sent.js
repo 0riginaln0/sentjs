@@ -290,8 +290,8 @@
 				default: return '&#039;';
 			}
 		});
-	}
-	;
+	};
+
 	function toggleEditor() {
 		if (editorVisible)
 			hideEditor();
