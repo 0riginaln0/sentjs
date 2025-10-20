@@ -1,5 +1,4 @@
 (function () {
-
 	var preamble = "<div class='slide'>";
 	var end = "</div>";
 	var empty = preamble + end;
@@ -11,12 +10,12 @@
 	var mainView;
 	var slideView;
 	var slideList;
-	var forward = [ 39, 13, 32, 76, 74, 40, 78 ];
-	var backward = [ 37, 8, 72, 75, 38, 80 ];
+	var forward = [39, 13, 32, 76, 74, 40, 78];
+	var backward = [37, 8, 72, 75, 38, 80];
 	var curSlideIdx = 0;
 	var slides = [];
 	var slideLines = [];
-  var filename = "presentation.html";
+	var filename = "presentation.html";
 	var editorVisible = false;
 	var fileBtn;
 	var inputDelay = 300;
@@ -32,7 +31,6 @@
 			window.requestAnimationFrame(setup);
 			return;
 		}
-
 		css();
 		createElements();
 		configureEditor();
@@ -41,35 +39,22 @@
 	};
 
 	function css() {
-
 		var style = createElement("style");
 		document.head.appendChild(style);
-
 		[
 			"html{box-sizing:content-box;}",
-	
 			"*,*:before,*:after{box-sizing:inherit;}",
-
 			"html,body{height:100%;width:100%;margin:0;}",
-
 			"#root{height:100%;display:flex;flex-direction:column;}",
-
 			"#main{height:100%;width:100%;display:flex;flex-direction:row;}",
-
 			"#editView{height:100%;display:none;}",
-
-			"#footerView{display:none;flex-direction:row;margin:2px;padding:2px;height:"+footerHt+";}",
-
+			"#footerView{display:none;flex-direction:row;margin:2px;padding:2px;height:" + footerHt + ";}",
 			"#slideView{display:flex;align-items:center;justify-content:center;width:100%;}",
-
 			".slide{white-space:pre;padding:1vw;line-height:100%;}",
-
 			".fill{overflow:hidden;background-repeat:no-repeat;background-size:contain;background-position:center;background-origin:content-box;height:100%;width:100%;}",
-
 			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;}",
-
 			"#file{display:none}"
-		].map(function(e, i) { style.sheet.insertRule(e, i); });
+		].map(function (e, i) { style.sheet.insertRule(e, i); });
 	}
 
 	function createElements() {
@@ -113,7 +98,7 @@
 		newBtn.value = 'new';
 		newBtn.onclick = newFile;
 		footerView.appendChild(newBtn);
-	
+
 		mainView = createElement('div');
 		mainView.id = 'main';
 
@@ -197,8 +182,8 @@
 		var lines = data.split("\n"), curSlide, hasImage;
 		var lastInsertedSlide = -1;
 
-		function reset() { 
-			curSlide = preamble; 
+		function reset() {
+			curSlide = preamble;
 			hasImage = false;
 			lastInsertedSlide++;
 		}
@@ -218,7 +203,7 @@
 		for (var i = 0, len = lines.length; i < len; i++) {
 			var line = lines[i];
 			if (line.startsWith("#")) {
-					checkLineNum(i);
+				checkLineNum(i);
 			} else if (line == "\\") {
 				if (slides.length > 0 && slides[slides.length - 1] != empty) {
 					slides.push(empty);
@@ -255,7 +240,7 @@
 	}
 
 	function isOverflown(element) {
-    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+		return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 	}
 
 	function resize(el) {
@@ -277,12 +262,12 @@
 	}
 
 	function escape(unsafe) {
-		return unsafe.replace(/[&<"']/g, function(m) {
+		return unsafe.replace(/[&<"']/g, function (m) {
 			switch (m) {
 				case '&': return '&amp;';
 				case '<': return '&lt;';
 				case '"': return '&quot;';
-				default : return '&#039;';
+				default: return '&#039;';
 			}
 		});
 	};
@@ -362,7 +347,7 @@
 
 	function loadFile(e) {
 		var reader = new FileReader();
-		reader.onload = function(e) {
+		reader.onload = function (e) {
 			var data = reader.result;
 			var lines = data.split("\n");
 			data = '';
@@ -383,7 +368,6 @@
 			slides = create(editor.value);
 			show(slides[curSlideIdx]);
 		};
-
 		reader.readAsText(e.target.files[0]);
 	}
 
@@ -393,13 +377,13 @@
 		var timeout = null;
 		var previous = 0;
 		if (!options) options = {};
-		var later = function() {
+		var later = function () {
 			previous = options.leading === false ? 0 : Date.now();
 			timeout = null;
 			result = func.apply(context, args);
 			if (!timeout) context = args = null;
 		};
-		return function() {
+		return function () {
 			var now = Date.now();
 			if (!previous && options.leading === false) previous = now;
 			var remaining = wait - (now - previous);
@@ -420,38 +404,37 @@
 		};
 	};
 
-  function debounce(func, wait, immediate) {
-    var timeout, result;
+	function debounce(func, wait, immediate) {
+		var timeout, result;
 
-    var later = function(context, args) {
-      timeout = null;
-      if (args) result = func.apply(context, args);
-    };
+		var later = function (context, args) {
+			timeout = null;
+			if (args) result = func.apply(context, args);
+		};
 
-    var debounced = restArgs(function(args) {
-      if (timeout) clearTimeout(timeout);
-      if (immediate) {
-        var callNow = !timeout;
-        timeout = setTimeout(later, wait);
-        if (callNow) result = func.apply(this, args);
-      } else {
-        timeout = delay(later, wait, this, args);
-      }
+		var debounced = restArgs(function (args) {
+			if (timeout) clearTimeout(timeout);
+			if (immediate) {
+				var callNow = !timeout;
+				timeout = setTimeout(later, wait);
+				if (callNow) result = func.apply(this, args);
+			} else {
+				timeout = delay(later, wait, this, args);
+			}
+			return result;
+		});
 
-      return result;
-    });
+		debounced.cancel = function () {
+			clearTimeout(timeout);
+			timeout = null;
+		};
 
-    debounced.cancel = function() {
-      clearTimeout(timeout);
-      timeout = null;
-    };
-
-    return debounced;
-  };
+		return debounced;
+	};
 
 	function restArgs(func, startIndex) {
 		startIndex = startIndex == null ? func.length - 1 : +startIndex;
-		return function() {
+		return function () {
 			var length = Math.max(arguments.length - startIndex, 0),
 				rest = Array(length),
 				index = 0;
@@ -472,10 +455,10 @@
 		};
 	};
 
-  var delay = restArgs(function(func, wait, args) {
-    return setTimeout(function() {
-      return func.apply(null, args);
-    }, wait);
-  });
+	var delay = restArgs(function (func, wait, args) {
+		return setTimeout(function () {
+			return func.apply(null, args);
+		}, wait);
+	});
 
 })();
