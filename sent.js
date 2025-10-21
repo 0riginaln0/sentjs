@@ -24,6 +24,8 @@
 	var fontDecreaseStep = 0.25;
 	var createElement = function (t) { return document.createElement(t); };
 	var fontSelect;
+	var darkMode = false;
+	var themeCheckbox;
 
 	window.requestAnimationFrame(setup);
 
@@ -37,6 +39,14 @@
 		configureEditor();
 		configureSlides();
 		configureEvents();
+		// Load saved theme preference
+		var savedDarkMode = localStorage.getItem('darkMode');
+		if (savedDarkMode !== null) {
+			darkMode = JSON.parse(savedDarkMode);
+			themeCheckbox.checked = darkMode;
+			updateTheme();
+		}
+		
 		resize(slideView);
 	};
 
@@ -46,15 +56,19 @@
 		[
 			"html{box-sizing:content-box;}",
 			"*,*:before,*:after{box-sizing:inherit;}",
-			"html,body{height:100%;width:100%;margin:0;}",
+			"html,body{height:100%;width:100%;margin:0;background-color:white;color:black;}",
+			"body.dark-mode{background-color:#1a1a1a;color:#ffffff;}",
 			"#root{height:100%;display:flex;flex-direction:column;}",
 			"#main{height:100%;width:100%;display:flex;flex-direction:row;}",
-			"#editView{height:100%;display:none;}",
-			"#footerView{display:none;flex-direction:row;margin:2px;padding:2px;height:" + footerHt + ";}",
+			"#editView{height:100%;display:none;background-color:white;}",
+			"body.dark-mode #editView{background-color:#1a1a1a;}",
+			"#footerView{display:none;flex-direction:row;margin:2px;padding:2px;height:" + footerHt + ";background-color:#f0f0f0;}",
+			"body.dark-mode #footerView{background-color:#333;}",
 			"#slideView{display:flex;align-items:center;justify-content:center;width:100%;}",
 			".slide{white-space:pre;padding:1vw;line-height:100%;}",
 			".fill{overflow:hidden;background-repeat:no-repeat;background-size:contain;background-position:center;background-origin:content-box;height:100%;width:100%;}",
-			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;font-family: monospace;}",
+			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;font-family: monospace;background-color:white;color:black;border:1px solid #ccc;}",
+			"body.dark-mode .editor{background-color:#2d2d2d;color:#f0f0f0;border-color:#555;}",
 			"#file{display:none}",
 			"#fontSelect { margin-left: 10px; }"
 		].map(function (e, i) { style.sheet.insertRule(e, i); });
@@ -123,6 +137,17 @@
 			fontSelect.appendChild(option);
 		});
 		footerView.appendChild(fontSelect);
+
+		var themeLabel = createElement('label');
+		themeLabel.innerHTML = 'Dark mode';
+		themeLabel.style.marginLeft = '10px';
+		footerView.appendChild(themeLabel);
+
+		themeCheckbox = createElement('input');
+		themeCheckbox.type = 'checkbox';
+		themeCheckbox.onchange = toggleTheme;
+		themeLabel.appendChild(themeCheckbox);
+
 
 		mainView = createElement('div');
 		mainView.id = 'main';
@@ -494,6 +519,21 @@
 		var selectedFont = fontSelect.value;
 		slideView.style.fontFamily = selectedFont;
 		resize(slideView);
+	}
+
+	function toggleTheme() {
+		darkMode = themeCheckbox.checked;
+		updateTheme();
+	}
+
+	function updateTheme() {
+		if (darkMode) {
+			document.body.classList.add('dark-mode');
+		} else {
+			document.body.classList.remove('dark-mode');
+		}
+		// Save theme preference to localStorage
+		localStorage.setItem('darkMode', darkMode);
 	}
 
 })();
