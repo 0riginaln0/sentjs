@@ -37,6 +37,7 @@
 		configureEditor();
 		configureSlides();
 		configureEvents();
+		resize(slideView);
 	};
 
 	function css() {
@@ -165,6 +166,7 @@
 		show(slides[curSlideIdx]);
 		fontSelect = document.getElementById('fontSelect');
 		applyFont();
+		resize(slideView);
 	}
 
 	function configureEvents() {
@@ -491,6 +493,7 @@
 	function applyFont() {
 		var selectedFont = fontSelect.value;
 		slideView.style.fontFamily = selectedFont;
+		resize(slideView);
 	}
 
 })();
