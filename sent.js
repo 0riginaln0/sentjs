@@ -116,7 +116,7 @@
 			var option = createElement('option');
 			option.value = font;
 			option.textContent = font;
-			if (font === 'Times New Roman') {
+			if (font === 'Iosevka') {
 				option.selected = true;
 			}
 			fontSelect.appendChild(option);
@@ -328,7 +328,7 @@
 		if ('Blob' in window) {
 			filename = prompt('Please enter file name to save', filename);
 			if (filename) {
-				var textToWrite = "<meta charset='utf-8'>\r\n<script src='http://unpkg.com/sentjs'>\r\n" + editor.value.replace(/\n/g, '\r\n') + "</script>";
+				var textToWrite = "<meta charset='utf-8'>\r\n<script src='sent.js'>\r\n" + editor.value.replace(/\n/g, '\r\n') + "</script>";
 				var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
 
 				if ('msSaveOrOpenBlob' in navigator) {
