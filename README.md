@@ -1,3 +1,7 @@
+Additional features:
+- Font selection
+- Dark mode switch
+
 # sentjs
 Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.org/sent/).
 
