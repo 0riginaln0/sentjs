@@ -26,6 +26,10 @@
 	var fontSelect;
 	var darkMode = false;
 	var themeCheckbox;
+	// Add line height variables
+	var lineHeight = 100; // Default to 100%
+	var lineHeightSlider;
+	var lineHeightValue;
 
 	window.requestAnimationFrame(setup);
 
@@ -46,6 +50,14 @@
 			themeCheckbox.checked = darkMode;
 			updateTheme();
 		}
+		// Load saved line height preference
+		var savedLineHeight = localStorage.getItem('lineHeight');
+		if (savedLineHeight !== null) {
+			lineHeight = parseInt(savedLineHeight);
+			lineHeightSlider.value = lineHeight;
+			lineHeightValue.textContent = lineHeight + '%';
+			updateLineHeight();
+		}
 		
 		resize(slideView);
 	};
@@ -65,12 +77,15 @@
 			"#footerView{display:none;flex-direction:row;margin:2px;padding:2px;height:" + footerHt + ";background-color:#f0f0f0;}",
 			"body.dark-mode #footerView{background-color:#333;}",
 			"#slideView{display:flex;align-items:center;justify-content:center;width:100%;}",
-			".slide{white-space:pre;padding:1vw;line-height:100%;}",
+			".slide{white-space:pre;padding:1vw;}",
 			".fill{overflow:hidden;background-repeat:no-repeat;background-size:contain;background-position:center;background-origin:content-box;height:100%;width:100%;}",
 			".editor{height:calc(100% - 10px);resize:horizontal;font-size:14px;font-family: monospace;background-color:white;color:black;border:1px solid #ccc;}",
 			"body.dark-mode .editor{background-color:#2d2d2d;color:#f0f0f0;border-color:#555;}",
 			"#file{display:none}",
-			"#fontSelect { margin-left: 10px; }"
+			"#fontSelect { margin-left: 10px; }",
+			"#lineHeightContainer { margin-left: 10px; display: flex; align-items: center; }",
+			"#lineHeightSlider { margin: 0 5px; }",
+			"#lineHeightValue { min-width: 40px; }"
 		].map(function (e, i) { style.sheet.insertRule(e, i); });
 	}
 
@@ -138,6 +153,31 @@
 		});
 		footerView.appendChild(fontSelect);
 
+		// Add line height control
+		var lineHeightContainer = createElement('div');
+		lineHeightContainer.id = 'lineHeightContainer';
+		
+		var lineHeightLabel = createElement('label');
+		lineHeightLabel.textContent = 'Line height:';
+		lineHeightLabel.htmlFor = 'lineHeightSlider';
+		lineHeightContainer.appendChild(lineHeightLabel);
+		
+		lineHeightSlider = createElement('input');
+		lineHeightSlider.id = 'lineHeightSlider';
+		lineHeightSlider.type = 'range';
+		lineHeightSlider.min = '80';
+		lineHeightSlider.max = '200';
+		lineHeightSlider.value = lineHeight;
+		lineHeightSlider.step = '5';
+		lineHeightContainer.appendChild(lineHeightSlider);
+		
+		lineHeightValue = createElement('span');
+		lineHeightValue.id = 'lineHeightValue';
+		lineHeightValue.textContent = lineHeight + '%';
+		lineHeightContainer.appendChild(lineHeightValue);
+		
+		footerView.appendChild(lineHeightContainer);
+
 		var themeLabel = createElement('label');
 		themeLabel.innerHTML = 'Dark mode';
 		themeLabel.style.marginLeft = '10px';
@@ -147,7 +187,6 @@
 		themeCheckbox.type = 'checkbox';
 		themeCheckbox.onchange = toggleTheme;
 		themeLabel.appendChild(themeCheckbox);
-
 
 		mainView = createElement('div');
 		mainView.id = 'main';
@@ -226,6 +265,13 @@
 		window.onresize = throttle(function (e) { show(slides[curSlideIdx]); });
 
 		fontSelect.onchange = applyFont;
+		
+		// Add line height slider event
+		lineHeightSlider.oninput = function() {
+			lineHeight = parseInt(this.value);
+			lineHeightValue.textContent = lineHeight + '%';
+			updateLineHeight();
+		};
 	}
 
 	function create(data, lineNum) {
@@ -291,6 +337,7 @@
 	function show(data) {
 		if (data === undefined) data = "";
 		slideView.innerHTML = data;
+		updateLineHeight();
 		resize(slideView);
 	}
 
@@ -534,6 +581,17 @@
 		}
 		// Save theme preference to localStorage
 		localStorage.setItem('darkMode', darkMode);
+	}
+
+	// Add line height functions
+	function updateLineHeight() {
+		var slideElement = slideView.querySelector('.slide');
+		if (slideElement) {
+			slideElement.style.lineHeight = lineHeight + '%';
+		}
+		// Save line height preference to localStorage
+		localStorage.setItem('lineHeight', lineHeight);
+		resize(slideView);
 	}
 
 })();

@@ -1,5 +1,6 @@
 Additional features:
 - Font selection
+- Line height slider
 - Dark mode switch
 
 # sentjs
