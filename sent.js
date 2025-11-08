@@ -41,8 +41,7 @@
 		css();
 		createElements();
 		configureEditor();
-		configureSlides();
-		configureEvents();
+		
 		// Load saved theme preference
 		var savedDarkMode = localStorage.getItem('darkMode');
 		if (savedDarkMode !== null) {
@@ -50,15 +49,24 @@
 			themeCheckbox.checked = darkMode;
 			updateTheme();
 		}
-		// Load saved line height preference
+		
+		// Load saved line height preference FIRST
 		var savedLineHeight = localStorage.getItem('lineHeight');
 		if (savedLineHeight !== null) {
 			lineHeight = parseInt(savedLineHeight);
+		}
+		
+		// Set the slider value if it exists
+		if (lineHeightSlider) {
 			lineHeightSlider.value = lineHeight;
 			lineHeightValue.textContent = lineHeight + '%';
-			updateLineHeight();
 		}
-
+		
+		configureSlides();
+		configureEvents();
+		
+		// Apply the line height AFTER slides are configured
+		updateLineHeight();
 		resize(slideView);
 	};
 
@@ -271,6 +279,8 @@
 			lineHeight = parseInt(this.value);
 			lineHeightValue.textContent = lineHeight + '%';
 			updateLineHeight();
+			// Save line height preference to localStorage
+			localStorage.setItem('lineHeight', lineHeight);
 		};
 	}
 
@@ -589,8 +599,6 @@
 		if (slideElement) {
 			slideElement.style.lineHeight = lineHeight + '%';
 		}
-		// Save line height preference to localStorage
-		localStorage.setItem('lineHeight', lineHeight);
 		resize(slideView);
 	}
 
