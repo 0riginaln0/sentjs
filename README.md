@@ -10,6 +10,7 @@ Usage:
 1. double click on the `index.html`
 1. edit your presentation text in the built-in editor (press `Escape` to open it)
 1. export your presentation via `save` button (save the `presentation.html` nearby the `index.html`) or copy paste your presentation text right into the `index.html`'s script section
+1. done! Rename the example folder as you wish, zip it or whatever and give your presentation!
 
 # sentjs
 Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.org/sent/).
