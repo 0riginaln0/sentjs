@@ -27,7 +27,7 @@
 	var darkMode = false;
 	var themeCheckbox;
 	// Add line height variables
-	var lineHeight = 100; // Default to 100%
+	var lineHeight = 130; // Default to 130%
 	var lineHeightSlider;
 	var lineHeightValue;
 
@@ -58,7 +58,7 @@
 			lineHeightValue.textContent = lineHeight + '%';
 			updateLineHeight();
 		}
-		
+
 		resize(slideView);
 	};
 
@@ -156,12 +156,12 @@
 		// Add line height control
 		var lineHeightContainer = createElement('div');
 		lineHeightContainer.id = 'lineHeightContainer';
-		
+
 		var lineHeightLabel = createElement('label');
 		lineHeightLabel.textContent = 'Line height:';
 		lineHeightLabel.htmlFor = 'lineHeightSlider';
 		lineHeightContainer.appendChild(lineHeightLabel);
-		
+
 		lineHeightSlider = createElement('input');
 		lineHeightSlider.id = 'lineHeightSlider';
 		lineHeightSlider.type = 'range';
@@ -170,12 +170,12 @@
 		lineHeightSlider.value = lineHeight;
 		lineHeightSlider.step = '5';
 		lineHeightContainer.appendChild(lineHeightSlider);
-		
+
 		lineHeightValue = createElement('span');
 		lineHeightValue.id = 'lineHeightValue';
 		lineHeightValue.textContent = lineHeight + '%';
 		lineHeightContainer.appendChild(lineHeightValue);
-		
+
 		footerView.appendChild(lineHeightContainer);
 
 		var themeLabel = createElement('label');
@@ -265,7 +265,7 @@
 		window.onresize = throttle(function (e) { show(slides[curSlideIdx]); });
 
 		fontSelect.onchange = applyFont;
-		
+
 		// Add line height slider event
 		lineHeightSlider.oninput = function() {
 			lineHeight = parseInt(this.value);
