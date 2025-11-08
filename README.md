@@ -1,29 +1,28 @@
-Additional features:
+# sentjs
+
+Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.org/sent/).
+
+## Additional features:
+
 - Font selection
 - Line height slider
 - Dark mode switch
 
-Usage:
+## Usage:
 
 1. Copy the repository
-1. grap the example folder
 1. double click on the `index.html`
 1. edit your presentation text in the built-in editor (press `Escape` to open it)
 1. export your presentation via `save` button (save the `presentation.html` nearby the `index.html`) or copy paste your presentation text right into the `index.html`'s script section
 1. done! Rename the example folder as you wish, zip it or whatever and give your presentation!
 
-# sentjs
-Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.org/sent/).
-
 ## Example:
 
 Create an HTML file containing your presentation slides where each slide is separated by a blank line:
+
 ```html
-<meta charset="utf-8">
-<script src="sent.js">
-@http://www.nyan.cat/cats/original.gif
-this text will not be displayed, since the @ at the start of the first line
-makes this paragraph an image slide.
+<meta charset='utf-8'>
+<script src='sent.js'>
 
 sentjs
 
@@ -33,22 +32,15 @@ get your point across fast
 
 simple to use
 
-2 slide types
-🖹 Text
-🌼 Image
-
-built-in editor
-⇒press escape
-
-depends on
-♽ HTML5
-☢ CSS3
-☃ JavaScript
+depends on:
+- HTML5
+- CSS3
+- JavaScript
 
 usage:
 \ 
 <meta charset="utf-8">
-<script src="http://unpkg.com/sentjs">
+<script src="sent.js">
 slide 1
 \ 
 slide 2
@@ -56,42 +48,61 @@ slide 2
 etc
 <\/script>
 
-one slide per paragraph
+2 slide types
+  • Text
+  • Image (and GIFs)
 
-lines starting with # are ignored
+built-in editor
+=> press escape
 
-image slide == paragraph containing @URL
+> one slide per paragraph*
+> lines starting with # are ignored
+> image/gif slide: paragraph containing @FILENAME
+> empty slide: just use a \\ as a paragraph
 
-empty slide == just use a \\ as a paragraph
+# Image from local folder
+@PNG_transparency_demonstration_1.png
 
-Use \\<space> for a blank line in a slide
+# GIF from local folder
+@cat-space.gif
 
-# This is a comment and will not be part of the presentation
+# Image from URL
+@https://cataas.com/cat
 
-# multiple empty lines between paragraphs are also ignored
+# GIF from URL
+@https://www.nyan.cat/cats/original.gif
 
+The next slide is empty
 
+# Empty slide is just \
+\
 
+*You can have several paragraphs in one slide
+\ 
+ Use \\<space> for a blank line in a slide
+
+# Use \ to escape \ or # or @
 \@this_line_actually_started_with_a_\\.png
 \#This line as well
-⇒ Use backslash to kill behaviour of tags
+=> Use backslash to kill behaviour of tags
 
 UTF-8 support:
 \ 
 😀😁😂😃😄😅😆😇😈😉😊😋😌😍😎😏
-😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟
 😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
-😲😳😴😵😶😷😸😹😺😻😼😽😾😿🙀☠
 
 Thanks to ⇒
      ▸ Takahashi
      ▸ suckless.org
+     ▸ Philip Bohun
+     ▸ github.com/dfadev
 
-fini
 
-# must have closing script tag
+thanks.
+questions?
+
 </script>
+
 ```
 
-Then view the file in your browser.  Use arrow keys to navigate.  F11 for fullscreen.  ESC to open editor.
-
+Then view the file in your browser. Use arrow keys to navigate. F11 for fullscreen. ESC to open editor.

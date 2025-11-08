@@ -1,25 +1,6 @@
 <meta charset='utf-8'>
 <script src='sent.js'>
 
-sent
-
-Origin:
-     Takahashi
-
-Why?
-• PPTX sucks
-• LATEX sucks
-• PDF sucks
-
-also:
-terminal presentations
-don't support images…
-
-
-@http://www.nyan.cat/cats/original.gif
-this text will not be displayed, since the @ at the start of the first line
-makes this paragraph an image slide.
-
 sentjs
 
 Why?
@@ -28,19 +9,10 @@ get your point across fast
 
 simple to use
 
-▸ one slide per paragraph
-▸ lines starting with # are ignored
-▸ image slide: paragraph containing @FILENAME
-▸ empty slide: just use a \\ as a paragraph
-
-
-built-in editor
-⇒press escape
-
-depends on
-♽ HTML5
-☢ CSS3
-☃ JavaScript
+depends on:
+- HTML5
+- CSS3
+- JavaScript
 
 usage:
 \ 
@@ -53,40 +25,57 @@ slide 2
 etc
 <\/script>
 
-one slide per paragraph
+2 slide types
+  • Text
+  • Image (and GIFs)
 
-lines starting with # are ignored
+built-in editor
+=> press escape
 
-image slide == paragraph containing @URL
+> one slide per paragraph*
+> lines starting with # are ignored
+> image/gif slide: paragraph containing @FILENAME
+> empty slide: just use a \\ as a paragraph
 
-empty slide == just use a \\ as a paragraph
+# Image from local folder
+@PNG_transparency_demonstration_1.png
 
-Use \\<space> for a blank line in a slide
+# GIF from local folder
+@cat-space.gif
 
-# This is a comment and will not be part of the presentation
+# Image from URL
+@https://cataas.com/cat
 
-# multiple empty lines between paragraphs are also ignored
+# GIF from URL
+@http://www.nyan.cat/cats/original.gif
 
+The next slide is empty
 
+# Empty slide is just
+\
 
+*You can have several paragraphs in one slide
+\ 
+ Use \\<space> for a blank line in a slide
+
+# Use \ to escape \ or # or @
 \@this_line_actually_started_with_a_\\.png
 \#This line as well
-⇒ Use backslash to kill behaviour of tags
+=> Use backslash to kill behaviour of tags
 
 UTF-8 support:
 \ 
 😀😁😂😃😄😅😆😇😈😉😊😋😌😍😎😏
-😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟
 😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
-😲😳😴😵😶😷😸😹😺😻😼😽😾😿🙀☠
 
 Thanks to ⇒
      ▸ Takahashi
      ▸ suckless.org
-
-fini
+     ▸ Philip Bohun
+     ▸ github.com/dfadev
 
 
 thanks.
 questions?
+
 </script>
