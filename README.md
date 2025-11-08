@@ -3,6 +3,14 @@ Additional features:
 - Line height slider
 - Dark mode switch
 
+Usage:
+
+1. Copy the repository
+1. grap the example folder
+1. double click on the `index.html`
+1. edit your presentation text in the built-in editor (press `Escape` to open it)
+1. export your presentation via `save` button (save the `presentation.html` nearby the `index.html`) or copy paste your presentation text right into the `index.html`'s script section
+
 # sentjs
 Simple plaintext presentation tool.  Ported from [sent](https://tools.suckless.org/sent/).
 
