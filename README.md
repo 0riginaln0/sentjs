@@ -101,6 +101,28 @@ Thanks to ⇒
 thanks.
 questions?
 
+How to present code snippets?
+
+Well, use either image or text :)
+
+@Fonts.png
+
+\@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./fonts/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+\ 
+\@font-face {
+    font-family: 'Iosevka';
+    src: url('./fonts/SGr-Iosevka-Regular.ttc') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 </script>
 
 ```
