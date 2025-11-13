@@ -98,7 +98,7 @@ Thanks to ⇒
      ▸ suckless.org
      ▸ Philip Bohun
      ▸ github.com/dfadev
-
+     - vshakitskiy
 
 thanks.
 questions?
@@ -119,7 +119,7 @@ Well, use either image or text :)
 \ 
 \@font-face {
     font-family: 'Iosevka';
-    src: url('./fonts/SGr-Iosevka-Regular.ttc') format('truetype');
+    src: url('./fonts/Iosevka-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
