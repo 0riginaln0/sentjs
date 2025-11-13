@@ -98,7 +98,7 @@ Thanks to ⇒
      ▸ suckless.org
      ▸ Philip Bohun
      ▸ github.com/dfadev
-     - vshakitskiy
+     ▸ vshakitskiy
 
 thanks.
 questions?
