@@ -22,6 +22,7 @@ Create an HTML file containing your presentation slides where each slide is sepa
 
 ```html
 <meta charset='utf-8'>
+<link rel="stylesheet" href="styles.css">
 <script src='sent.js'>
 
 sentjs
@@ -40,6 +41,7 @@ depends on:
 usage:
 \ 
 <meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
 <script src="sent.js">
 slide 1
 \ 
